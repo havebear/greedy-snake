@@ -5,8 +5,9 @@
   let element = null
 
   class Food {
-    constructor({ width = 20, height = 20, left = 0, top = 0, background = "#afafaf" } = {}) {
-      Object.assign(this, { width, height, left, top, background })
+    constructor({ map, width = 20, height = 20, left = 0, top = 0, background = "#afafaf" } = {}) {
+      Object.assign(this, { map, width, height, left, top, background })
+      this.init()
     }
   
     init () {
