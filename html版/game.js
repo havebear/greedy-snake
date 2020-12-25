@@ -10,15 +10,15 @@
       const timer = setInterval(() => {
         const { snack, food } = this
         snack.move(food)
+        const { left: headX, top: headY } = snack.body[0]
         const maxX = map.offsetWidth - snack.width
         const maxY = map.offsetHeight - snack.height
-        const headX = snack.left
-        const headY = snack.top
+        console.log({ maxX, maxY, headX, headY })
         if (headX < 0 || headX >= maxX || headY < 0 || headY >= maxY) {
           clearInterval(timer)
           alert('游戏结束')
         }
-      }, 100)
+      }, 1000)
     }
 
 

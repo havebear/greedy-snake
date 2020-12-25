@@ -67,7 +67,7 @@
       elements.unshift(elements.pop())
       // 移动对应body节点位置
       body.unshift(nextHead)
-      Object.assign(elements[0].style, nextHead)
+      Object.assign(elements[0].style, { left: nextHead.left + 'px', top: nextHead.top + 'px' })
       // 移动过程中，判断是否和食物的位置相同，是则增加节点，创建新食物
       if (currentHead.left === food.left && currentHead.top === food.top) {
         const newBodyItem = genBodyItem(lastBodyItem, this)
@@ -78,7 +78,7 @@
         body.pop()
       }
       // 移动完成后
-      console.log(elements)
+      // console.log(elements)
     }
 
     // 移除dom节点
