@@ -14,7 +14,7 @@ html, body {
   width: 500px;
   height: 360px;
   background-color: #ffffff;
-  border: 3px solid #afafaf;
+  /* border: 3px solid #afafaf; */
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
