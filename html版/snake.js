@@ -5,6 +5,7 @@
     const div = document.createElement('div')
     Object.assign(div.style, {
       position: 'absolute',
+      zIndex: 1,
       width: width + 'px',
       height: height + 'px',
       left: data.left + 'px',
@@ -24,7 +25,7 @@
         color,
         body: new Array(3)
           .fill(3)
-          .map((item, index) => ({ left: index * width, top: height * 2 }))
+          .map((item, index) => ({ left: index * width, top: 0 }))
           .reverse()
       })
       this.init()
@@ -44,8 +45,8 @@
       // console.log(this)
       // debugger
       const { body, direction, width, height } = this
-      const nextHead = { left: 0, top: 0 }
       const currentHead = body[0]
+      const nextHead = { ...currentHead }
       const lastBodyItem = body[body.length - 1]
       // 计算头部下一个位置
       switch (direction) {

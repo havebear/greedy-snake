@@ -20,6 +20,7 @@
       element = document.createElement('div')
       Object.assign(element.style, {
         position: 'absolute',
+        zIndex: 0,
         width: width + 'px',
         height: height + 'px',
         left: _left + 'px',
