@@ -2,7 +2,7 @@
  * @Author: 616749285@qq.com
  * @Date: 2020-12-25 09:35:36
  * @LastEditors: 616749285@qq.com
- * @LastEditTime: 2020-12-30 13:42:25
+ * @LastEditTime: 2020-12-30 14:14:01
  * @Description:  
  */
 
@@ -54,6 +54,7 @@
     changeDirection (snake) {
       document.addEventListener('keydown', e => {
         const temp = DIRECTION_MAP.get(e.key)
+        if (!temp) return
         if (temp.d === snake.direction) {
           this.move()
         } else {

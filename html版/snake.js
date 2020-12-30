@@ -1,3 +1,12 @@
+/**
+ * TODO
+ * 1、生成食物时，判断是否和snake重合，如果重合则算进食，重新生成食物
+ * 2、快速切换方向，会导致snake方向异常
+ * 3、增加snake的header和body碰撞判断
+ * 4、增加暂停继续功能
+ * 5、增加计分、分数上线功能
+ */
+
 (function () {
   let elements = []
 
@@ -10,7 +19,8 @@
       height: height + 'px',
       left: data.left + 'px',
       top: data.top + 'px',
-      background: color
+      // background: color
+      background: `rgba(${Math.ceil(Math.random() * 255)}, ${Math.ceil(Math.random() * 255)}, ${Math.ceil(Math.random() * 255)})`
     })
     return div
   }
