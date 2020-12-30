@@ -2,7 +2,7 @@
  * @Author: 616749285@qq.com
  * @Date: 2020-12-25 09:35:36
  * @LastEditors: 616749285@qq.com
- * @LastEditTime: 2020-12-29 18:04:23
+ * @LastEditTime: 2020-12-30 13:42:25
  * @Description:  
  */
 
@@ -16,6 +16,7 @@
   let timer = null
   class Game {
     constructor (id) {
+      this.state = false
       this.map = document.getElementById(id)
       this.snack = new Snack({ map: this.map })
       this.food = new Food({ map: this.map })
@@ -23,21 +24,28 @@
     }
 
     start () {
+      this.state = true
       this.move()
     }
 
     move () {
       clearTimeout(timer)
+      if (!this.state) return
       const { snack, food } = this
-      snack.move(food)
       const { left: headX, top: headY } = snack.body[0]
+      const { direction } = snack
       const maxX = map.offsetWidth - snack.width
       const maxY = map.offsetHeight - snack.height
-      if (headX < 0 || headX >= maxX || headY < 0 || headY >= maxY) {
-        clearTimeout(timer)
-        // alert('游戏结束')
-        return
+      if (
+        (headX <= 0 && direction === "left") ||
+        (headX >= maxX && direction === "right") ||
+        (headY <= 0 && direction === "top") ||
+        (headY >= maxY && direction === "bottom")
+      ) {
+        this.state = false
+        return clearTimeout(timer)
       }
+      snack.move(food)
       timer = setTimeout(() => {
         this.move()
       }, 500)
@@ -45,7 +53,6 @@
 
     changeDirection (snake) {
       document.addEventListener('keydown', e => {
-        console.log(e.key)
         const temp = DIRECTION_MAP.get(e.key)
         if (temp.d === snake.direction) {
           this.move()
