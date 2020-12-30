@@ -1,6 +1,6 @@
 /**
  * TODO
- * 1、生成食物时，判断是否和snake重合，如果重合则算进食，重新生成食物
+ * 1、生成食物时，判断是否和snake重合，，是则重新生成食物
  * 2、快速切换方向，会导致snake方向异常
  * 3、增加snake的header和body碰撞判断
  * 4、增加暂停继续功能
@@ -85,7 +85,7 @@
         const newBodyItem = genBodyItem(lastBodyItem, this)
         map.appendChild(newBodyItem)
         elements.push(newBodyItem)
-        food.init()
+        food.init(this)
       } else {
         body.pop()
       }
