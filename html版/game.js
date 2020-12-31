@@ -2,7 +2,7 @@
  * @Author: 616749285@qq.com
  * @Date: 2020-12-25 09:35:36
  * @LastEditors: 616749285@qq.com
- * @LastEditTime: 2020-12-30 17:54:01
+ * @LastEditTime: 2020-12-31 11:12:12
  * @Description:  
  */
 
@@ -16,6 +16,7 @@
   let timer = null
   class Game {
     constructor (id) {
+      this.score = 0
       this.state = false
       this.map = document.getElementById(id)
       this.snack = new Snack({ map: this.map })
@@ -25,6 +26,7 @@
 
     start () {
       this.food.init(this.snake)
+      this.score = 0
       this.state = true
       this.move()
     }
