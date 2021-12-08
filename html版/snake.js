@@ -1,3 +1,13 @@
+/**
+ * TODO
+ * 1、生成食物时，判断是否和snake重合，，是则重新生成食物
+ * 2、快速切换方向，会导致snake方向异常
+ * 3、增加snake的header和body碰撞判断
+ * 4、增加暂停继续功能
+ * 5、增加计分、分数上线功能
+ * 6、重构
+ */
+
 (function () {
   let elements = []
 
@@ -5,11 +15,13 @@
     const div = document.createElement('div')
     Object.assign(div.style, {
       position: 'absolute',
+      zIndex: 1,
       width: width + 'px',
       height: height + 'px',
       left: data.left + 'px',
       top: data.top + 'px',
-      background: color
+      // background: color
+      background: `rgba(${Math.ceil(Math.random() * 255)}, ${Math.ceil(Math.random() * 255)}, ${Math.ceil(Math.random() * 255)})`
     })
     return div
   }
@@ -24,7 +36,7 @@
         color,
         body: new Array(3)
           .fill(3)
-          .map((item, index) => ({ left: index * width, top: height * 2 }))
+          .map((item, index) => ({ left: index * width, top: 0 }))
           .reverse()
       })
       this.init()
@@ -44,8 +56,8 @@
       // console.log(this)
       // debugger
       const { body, direction, width, height } = this
-      const nextHead = { left: 0, top: 0 }
       const currentHead = body[0]
+      const nextHead = { ...currentHead }
       const lastBodyItem = body[body.length - 1]
       // 计算头部下一个位置
       switch (direction) {
@@ -73,7 +85,7 @@
         const newBodyItem = genBodyItem(lastBodyItem, this)
         map.appendChild(newBodyItem)
         elements.push(newBodyItem)
-        food.init()
+        food.init(this)
       } else {
         body.pop()
       }
